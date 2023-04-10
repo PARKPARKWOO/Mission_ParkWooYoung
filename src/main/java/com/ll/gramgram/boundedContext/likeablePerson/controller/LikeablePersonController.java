@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 @Controller
@@ -38,7 +39,7 @@ public class LikeablePersonController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/add")
-    public String add(@Valid AddForm addForm) {
+    public String add(@Valid AddForm addForm) throws Exception {
         RsData<LikeablePerson> createRsData = likeablePersonService.like(rq.getMember(), addForm.getUsername(), addForm.getAttractiveTypeCode());
 
         if (createRsData.isFail()) {

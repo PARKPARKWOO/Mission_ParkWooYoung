@@ -15,7 +15,7 @@ import java.util.List;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
-@Builder
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
@@ -53,5 +53,9 @@ public class InstaMember {
 
     public void addToLikeablePerson(LikeablePerson likeablePerson) {
         toLikeablePeople.add(0, likeablePerson);
+    }
+
+    public void removeLikeablePerson(LikeablePerson likeablePerson) {
+        toLikeablePeople.remove(likeablePerson);
     }
 }

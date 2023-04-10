@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,8 +31,22 @@ public class LikeablePersonService {
             return RsData.of("F-1", "본인을 호감상대로 등록할 수 없습니다.");
         }
 
+
         InstaMember fromInstaMember = member.getInstaMember();
         InstaMember toInstaMember = instaMemberService.findByUsernameOrCreate(username).getData();
+
+        if (this.likeablePersonRepository.findByToInstaMemberUsername(username).isPresent()) {
+            LikeablePerson check = this.likeablePersonRepository.findByToInstaMemberUsername(username).get();
+            if (check.getAttractiveTypeCode() == attractiveTypeCode) {
+                return RsData.of("F-1", "중복회원은 등록 할 수 없습니다.");
+            } else if (check.getAttractiveTypeCode() != attractiveTypeCode){
+                LikeablePerson likeablePerson = check.toBuilder()
+                        .attractiveTypeCode(attractiveTypeCode)
+                        .build();
+                likeablePersonRepository.save(likeablePerson);
+                return RsData.of("S-1",String.format("%s 님의 대한 호감정보를 변경 하였습니다", username));
+            }
+        }
 
         LikeablePerson likeablePerson = LikeablePerson
                 .builder()
@@ -49,7 +64,6 @@ public class LikeablePersonService {
 
         // 너를 좋아하는 호감표시 생겼어.
         toInstaMember.addToLikeablePerson(likeablePerson);
-
         return RsData.of("S-1", "입력하신 인스타유저(%s)를 호감상대로 등록되었습니다.".formatted(username), likeablePerson);
     }
 

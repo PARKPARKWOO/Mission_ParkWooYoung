@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Optional;
 
 @Service
@@ -57,7 +58,7 @@ public class InstaMemberService {
     }
 
     @Transactional
-    public RsData<InstaMember> findByUsernameOrCreate(String username) {
+    public RsData<InstaMember> findByUsernameOrCreate(String username)  {
         Optional<InstaMember> opInstaMember = findByUsername(username);
 
         if (opInstaMember.isPresent()) return RsData.of("S-2", "인스타계정이 등록되었습니다.", opInstaMember.get());
