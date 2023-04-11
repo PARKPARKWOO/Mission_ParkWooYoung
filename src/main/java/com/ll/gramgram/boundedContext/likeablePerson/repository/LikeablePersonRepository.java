@@ -6,6 +6,7 @@ import com.ll.gramgram.boundedContext.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public interface LikeablePersonRepository extends JpaRepository<LikeablePerson, Long> {
@@ -13,8 +14,10 @@ public interface LikeablePersonRepository extends JpaRepository<LikeablePerson, 
 
     List<LikeablePerson> findByAttractiveTypeCode(int code);
 
-    Optional<LikeablePerson> findByToInstaMemberUsername(String username);
-
     List<LikeablePerson> findByToInstaMember(InstaMember instaMember);
+
+    List<LikeablePerson> findByFromInstaMember(InstaMember instaMember);
+
+    Optional<LikeablePerson> findByToInstaMemberUsername(String username);
 
 }
