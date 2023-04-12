@@ -37,20 +37,16 @@ public class LikeablePersonService {
         InstaMember fromInstaMember = member.getInstaMember();
         InstaMember toInstaMember = instaMemberService.findByUsernameOrCreate(username).getData();
 
-        if (likeablePersonRepository.findByToInstaMemberUsername(username).isPresent()) {
-            for (LikeablePerson like :
-                    likeablePersonRepository.findByFromInstaMember(fromInstaMember)) {
-                if (like.getToInstaMemberUsername().equals(username)) {
-                    if (like.getAttractiveTypeCode() == attractiveTypeCode) {
-                        return RsData.of("F-1", "중복회원은 등록 할 수 없습니다.");
-                    } else {
-                        LikeablePerson likeablePerson = like.toBuilder()
-                                .attractiveTypeCode(attractiveTypeCode)
-                                .build();
-                        likeablePersonRepository.save(likeablePerson);
-                        return RsData.of("S-1", String.format("%s 님의 대한 호감정보를 변경 하였습니다", username));
-                    }
-                }
+        if (likeablePersonRepository.findByFromInstaMemberIdAndToInstaMemberUsername(fromInstaMember.getId(), username).isPresent()) {
+            LikeablePerson likeablePerson = likeablePersonRepository.findByFromInstaMemberIdAndToInstaMemberUsername(fromInstaMember.getId(), username).get();
+            if (likeablePerson.getAttractiveTypeCode() == attractiveTypeCode) {
+                return RsData.of("F-1", "중복회원은 등록 할 수 없습니다.");
+            } else {
+                LikeablePerson likeablePerson1 = likeablePerson.toBuilder()
+                        .attractiveTypeCode(attractiveTypeCode)
+                        .build();
+                likeablePersonRepository.save(likeablePerson);
+                return RsData.of("S-1", String.format("%s 님의 대한 호감정보를 변경 하였습니다", username));
             }
         }
 
