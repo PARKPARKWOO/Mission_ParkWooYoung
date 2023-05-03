@@ -225,6 +225,6 @@ public class LikeablePersonService {
      */
     public boolean verificationCoolTime(InstaMember actor) {
         List<LikeablePerson> list = actor.getFromLikeablePeople();
-        return list.stream().filter(i -> ChronoUnit.HOURS.between(i.getModifyDate(), LocalDateTime.now()) < 3).findFirst().isEmpty();
+        return list.stream().filter(i -> ChronoUnit.HOURS.between(i.getModifyDate(), LocalDateTime.now()) <= 2).findFirst().isEmpty();
     }
 }
