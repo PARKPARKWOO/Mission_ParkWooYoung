@@ -15,6 +15,9 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -47,7 +50,6 @@ public class LikeablePersonService {
                 .attractiveTypeCode(attractiveTypeCode) // 1=외모, 2=능력, 3=성격
                 .modifyUnlockDate(AppConfig.genLikeablePersonModifyUnlockDate())
                 .build();
-
         likeablePersonRepository.save(likeablePerson); // 저장
 
         // 너가 좋아하는 호감표시 생겼어.
@@ -105,7 +107,9 @@ public class LikeablePersonService {
         }
 
         InstaMember fromInstaMember = actor.getInstaMember();
-
+        if (!verificationCoolTime(fromInstaMember)) {
+            return RsData.of("F-1", "3시간뒤에 해주세요.");
+        }
         if (fromInstaMember.getUsername().equals(username)) {
             return RsData.of("F-2", "본인을 호감상대로 등록할 수 없습니다.");
         }
@@ -202,6 +206,9 @@ public class LikeablePersonService {
         if (!actor.hasConnectedInstaMember()) {
             return RsData.of("F-1", "먼저 본인의 인스타그램 아이디를 입력해주세요.");
         }
+        if (!verificationCoolTime(actor.getInstaMember())) {
+            RsData.of("F-1", "입력 후 3시간뒤 해주세요");
+        }
 
         InstaMember fromInstaMember = actor.getInstaMember();
 
@@ -211,5 +218,13 @@ public class LikeablePersonService {
 
 
         return RsData.of("S-1", "호감표시취소가 가능합니다.");
+    }
+
+    /**
+     * 3시간 검증
+     */
+    public boolean verificationCoolTime(InstaMember actor) {
+        List<LikeablePerson> list = actor.getFromLikeablePeople();
+        return list.stream().filter(i -> ChronoUnit.HOURS.between(i.getModifyDate(), LocalDateTime.now()) < 3).findFirst().isEmpty();
     }
 }
