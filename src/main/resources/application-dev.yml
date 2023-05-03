@@ -1,3 +1,12 @@
+spring:
+  profiles:
+    active:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/gram__dev?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
+    username: ENC(vnorpyqN45UqERHLOINDYw==)
+    password: ENC(b180A95E42O5V6nAlm3kig==)
+
 server:
   port: 443
   ssl:
