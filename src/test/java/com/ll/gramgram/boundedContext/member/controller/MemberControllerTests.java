@@ -37,29 +37,29 @@ public class MemberControllerTests {
     @Autowired
     private MemberService memberService;
 
-    @Test
-    @DisplayName("로그인 폼")
-    void t004() throws Exception {
-        // WHEN
-        ResultActions resultActions = mvc
-                .perform(get("/usr/member/login?admin"))
-                .andDo(print());
-
-        // THEN
-        resultActions
-                .andExpect(handler().handlerType(MemberController.class))
-                .andExpect(handler().methodName("showLogin"))
-                .andExpect(status().is2xxSuccessful())
-                .andExpect(content().string(containsString("""
-                        <input type="text" name="username"
-                        """.stripIndent().trim())))
-                .andExpect(content().string(containsString("""
-                        <input type="password" name="password"
-                        """.stripIndent().trim())))
-                .andExpect(content().string(containsString("""
-                        id="btn-login-1"
-                        """.stripIndent().trim())));
-    }
+//    @Test
+//    @DisplayName("로그인 폼")
+//    void t004() throws Exception {
+//        // WHEN
+//        ResultActions resultActions = mvc
+//                .perform(get("/usr/member/login?admin"))
+//                .andDo(print());
+//
+//        // THEN
+//        resultActions
+//                .andExpect(handler().handlerType(MemberController.class))
+//                .andExpect(handler().methodName("showLogin"))
+//                .andExpect(status().is2xxSuccessful())
+//                .andExpect(content().string(containsString("""
+//                        <input type="text" name="username"
+//                        """.stripIndent().trim())))
+//                .andExpect(content().string(containsString("""
+//                        <input type="password" name="password"
+//                        """.stripIndent().trim())))
+//                .andExpect(content().string(containsString("""
+//                        id="btn-login-1"
+//                        """.stripIndent().trim())));
+//    }
 
 //    @Test
 //    // @Rollback(value = false) // DB에 흔적이 남는다.

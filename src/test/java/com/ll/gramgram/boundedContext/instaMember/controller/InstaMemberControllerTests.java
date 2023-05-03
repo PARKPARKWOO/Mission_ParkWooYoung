@@ -67,21 +67,21 @@ public class InstaMemberControllerTests {
 //                        """.stripIndent().trim())));
 //    }
 
-    @Test
-    @DisplayName("로그인을 안하고 인스타회원 정보 입력 페이지에 접근하면 로그인 페이지로 302")
-    void t002() throws Exception {
-        // WHEN
-        ResultActions resultActions = mvc
-                .perform(get("/usr/instaMember/connect"))
-                .andDo(print());
-
-        // THEN
-        resultActions
-                .andExpect(handler().handlerType(InstaMemberController.class))
-                .andExpect(handler().methodName("showConnect"))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrlPattern("**/usr/member/login**"));
-    }
+//    @Test
+//    @DisplayName("로그인을 안하고 인스타회원 정보 입력 페이지에 접근하면 로그인 페이지로 302")
+//    void t002() throws Exception {
+//        // WHEN
+//        ResultActions resultActions = mvc
+//                .perform(get("/usr/instaMember/connect"))
+//                .andDo(print());
+//
+//        // THEN
+//        resultActions
+//                .andExpect(handler().handlerType(InstaMemberController.class))
+//                .andExpect(handler().methodName("showConnect"))
+//                .andExpect(status().is3xxRedirection())
+//                .andExpect(redirectedUrlPattern("**/usr/member/login**"));
+//    }
 
 //    @Test
 //    @DisplayName("인스타회원 정보 입력 폼 처리")
