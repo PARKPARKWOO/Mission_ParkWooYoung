@@ -3,7 +3,7 @@ spring:
     active:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://database-1.cfjq3dvnnxge.ap-northeast-2.rds.amazonaws.com:3306/gram?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
+    url: ENC(lZpecQT6UEgAqGqgnsCWgHROYjDlCdTaAT0tZBCTcYKOvtCb4fAbKslskuwrc0lU7uJqNXsqgc37aqM7Je63hW6K7rWj6IkTcB10lYJTSzqSMq7Gvi02QkajU77cAiqcR86z2Cihnx62+iD40GuBdYLOOSEGM+72g0IZspv7uwmVbl1cmusAIqoKjylRd0p6ViDbxq3htZG3QwG287uNLCz5jZR8zL2nUaMlisPI0uI=)
     username: ENC(t4al/9VRLqzH9Eff0G28gg==)
     password: ENC(kD8Coo1uOpkIMDdcilWoq4nZ9nlxAfoF)
   security:
