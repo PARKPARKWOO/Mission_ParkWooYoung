@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 
 @Configuration
-@Profile({"dev", "test"})
+//@Profile({"dev", "test"})
 public class NotProd {
 //    @Value("${custom.security.oauth2.client.registration.kakao.devUserOauthId}")
 //    private String kakaoDevUserOAuthId;
