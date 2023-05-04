@@ -1,11 +1,11 @@
 spring:
   profiles:
-    active: dev
+    active:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/gram__dev?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
-    username: ENC(vnorpyqN45UqERHLOINDYw==)
-    password: ENC(b180A95E42O5V6nAlm3kig==)
+    url: ENC(lZpecQT6UEgAqGqgnsCWgHROYjDlCdTaAT0tZBCTcYKOvtCb4fAbKslskuwrc0lU7uJqNXsqgc37aqM7Je63hW6K7rWj6IkTcB10lYJTSzqSMq7Gvi02QkajU77cAiqcR86z2Cihnx62+iD40GuBdYLOOSEGM+72g0IZspv7uwmVbl1cmusAIqoKjylRd0p6ViDbxq3htZG3QwG287uNLCz5jZR8zL2nUaMlisPI0uI=)
+    username: ENC(t4al/9VRLqzH9Eff0G28gg==)
+    password: ENC(kD8Coo1uOpkIMDdcilWoq4nZ9nlxAfoF)
   security:
     oauth2:
       client:
@@ -86,11 +86,3 @@ custom:
 jasypt:
   encryptor:
     password: jasyptStringEncryptor
-
-server:
-  port: 443
-  ssl:
-    enabled: true
-    key-store-type: PKCS12
-    key-store-password: ENC(03hOH8jVndzwIWzzOtBEPw==)
-    key-store: keystore.p12
