@@ -1,5 +1,6 @@
 package com.ll.gramgram.boundedContext.likeablePerson.controller;
 
+import com.ll.gramgram.base.baseEntity.BaseEntity;
 import com.ll.gramgram.base.rq.Rq;
 import com.ll.gramgram.base.rsData.RsData;
 import com.ll.gramgram.boundedContext.instaMember.entity.InstaMember;
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -134,24 +137,30 @@ public class LikeablePersonController {
 
             if (gender != null) {
                 // likeablePeopleStream = likeablePeopleStream.filter();
+                likeablePeopleStream = likeablePeopleStream.filter(g -> g.getToInstaMember().getGender().equals(gender));
             }
 
             if (attractiveTypeCode != 0) {
                 // likeablePeopleStream = likeablePeopleStream.filter();
+                likeablePeopleStream = likeablePeopleStream.filter(g -> g.getAttractiveTypeCode() == attractiveTypeCode);
             }
 
             switch (sortCode) {
                 case 1:
                     // likeablePeopleStream = likeablePeopleStream.sorted(??);
+                    likeablePeopleStream = likeablePeopleStream.sorted(Comparator.comparing(BaseEntity::getId).reversed());
                     break;
                 case 2:
                     // likeablePeopleStream = likeablePeopleStream.sorted(??);
+                    likeablePeopleStream = likeablePeopleStream.sorted(Comparator.comparing(BaseEntity::getCreateDate));
                     break;
                 case 3:
                     // likeablePeopleStream = likeablePeopleStream.sorted(??);
+                    likeablePeopleStream = likeablePeopleStream.sorted(Comparator.comparingInt(a -> a.getToInstaMember().getToLikeablePeople().size()));
                     break;
                 case 4:
                     // likeablePeopleStream = likeablePeopleStream.sorted(??);
+//                    likeablePeopleStream = likeablePeopleStream.sorted(Comparator.comparingInt();
                     break;
                 case 5:
                     // likeablePeopleStream = likeablePeopleStream.sorted(??);
