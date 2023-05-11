@@ -31,7 +31,7 @@ spring:
           facebook:
             clientId: ENC(jWu++YZSucjo13BIbCl2hdp4BWlhI+ih)
             client-secret: ENC(Qf1p8MKieOVUQlAWGXXItEP2B3vv/Of2m+jCrAoNGzDdTxXmDtHBadwQtVyiajbY)
-            redirect-uri: https://localhost/login/oauth2/code/faceboo
+            redirect-uri: https://localhost/login/oauth2/code/facebook
             client-name: Facebook
             scope:
           instagram:
