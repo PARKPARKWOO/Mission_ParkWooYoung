@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active:
+    active: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: ENC(lZpecQT6UEgAqGqgnsCWgHROYjDlCdTaAT0tZBCTcYKOvtCb4fAbKslskuwrc0lU7uJqNXsqgc37aqM7Je63hW6K7rWj6IkTcB10lYJTSzqSMq7Gvi02QkajU77cAiqcR86z2Cihnx62+iD40GuBdYLOOSEGM+72g0IZspv7uwmVbl1cmusAIqoKjylRd0p6ViDbxq3htZG3QwG287uNLCz5jZR8zL2nUaMlisPI0uI=)
@@ -31,7 +31,7 @@ spring:
           facebook:
             clientId: ENC(jWu++YZSucjo13BIbCl2hdp4BWlhI+ih)
             client-secret: ENC(Qf1p8MKieOVUQlAWGXXItEP2B3vv/Of2m+jCrAoNGzDdTxXmDtHBadwQtVyiajbY)
-            redirect-uri: https://localhost/login/oauth2/code/faceboo
+            redirect-uri: https://localhost/login/oauth2/code/facebook
             client-name: Facebook
             scope:
           instagram:
